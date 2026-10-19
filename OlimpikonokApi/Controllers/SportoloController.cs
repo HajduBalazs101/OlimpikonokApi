@@ -58,7 +58,7 @@ namespace OlimpikonokApi.Controllers
                             Ermek = s.Ermek,
                             OrszagNev = s.Orszag.Nev
                         }).ToList();
-                    return Ok(sportoloDTOk);)
+                    return Ok(sportoloDTOk);
                 }
             }
             catch (Exception ex)
