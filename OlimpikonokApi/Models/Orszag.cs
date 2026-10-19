@@ -13,5 +13,5 @@ public partial class Orszag
 
     public int Nepesseg { get; set; }
 
-    public virtual ICollection<Sportolo> Sportolos { get; set; } = new List<Sportolo>();
+    public virtual ICollection<Sportolo>? Sportolos { get; set; } = new List<Sportolo>();
 }

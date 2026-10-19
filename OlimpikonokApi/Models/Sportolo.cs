@@ -23,7 +23,7 @@ public partial class Sportolo
 
     public byte[] Kep { get; set; } = null!;
 
-    public virtual Orszag Orszag { get; set; } = null!;
+    public virtual Orszag? Orszag { get; set; } = null!;
 
-    public virtual Sportag Sportag { get; set; } = null!;
+    public virtual Sportag? Sportag { get; set; } = null!;
 }
