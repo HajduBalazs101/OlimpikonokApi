@@ -48,11 +48,12 @@ namespace OlimpikonokApi.Controllers
         {
             try
             {
-                using(var context = new OlimpikonokContext())
+                using (var context = new OlimpikonokContext())
                 {
                     List<SportoloDTO> sportoloDTOk = context.Sportolos.Include(s => s.Sportag).Include(s => s.Orszag)
                         .Select(s => new SportoloDTO
                         {
+                            Id = s.Id,
                             Nev = s.Nev,
                             SportagNev = s.Sportag.Megnevezes,
                             Ermek = s.Ermek,
@@ -64,6 +65,30 @@ namespace OlimpikonokApi.Controllers
             catch (Exception ex)
             {
                 return StatusCode(500, "Hiba történt a sportolók DTO lekérdezése során: " + ex.Message);
+            }
+        }
+        [HttpGet("GetSportoloDTOById/{id}")]
+        public IActionResult GetSportoloDTOById(int id)
+        {
+            try
+            {
+                using (var context = new OlimpikonokContext())
+                {
+                    List<SportoloDTO> sportoloDTOk = context.Sportolos.Include(s => s.Sportag).Include(s => s.Orszag).Where(s => s.Id == id)
+                    .Select(s => new SportoloDTO
+                    {
+                        Id= s.Id,
+                        Nev = s.Nev,
+                        SportagNev = s.Sportag.Megnevezes,
+                        Ermek = s.Ermek,
+                        OrszagNev = s.Orszag.Nev
+                    }).ToList();
+                    return Ok(sportoloDTOk);
+                }
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, "Hiba történt a sportoló DTO lekérdezése során: " + ex.Message);
             }
         }
     }
